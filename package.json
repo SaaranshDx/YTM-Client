@@ -1,0 +1,56 @@
+{
+  "name": "ytmusic-client",
+  "version": "1.0.0",
+  "description": "YouTube Music desktop client with extension support",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "build": {
+    "appId": "com.ytmusic.client",
+    "productName": "YouTube Music",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "assets/**/*",
+      "extensions/**/*",
+      "node_modules/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "extensions",
+        "to": "extensions",
+        "filter": ["**/*"]
+      }
+    ],
+    "icon": "assets/ytmusic.ico",
+    "win": {
+      "target": ["nsis", "portable"]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "YouTube Music"
+    },
+    "mac": {
+      "target": ["dmg"]
+    },
+    "linux": {
+      "target": ["AppImage", "deb"]
+    }
+  },
+  "dependencies": {
+    "discord-rpc": "^4.0.1"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.1.8"
+  }
+}

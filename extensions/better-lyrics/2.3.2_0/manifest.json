@@ -1,0 +1,69 @@
+{
+   "action": {
+      "default_popup": "action/default_popup.html"
+   },
+   "background": {
+      "service_worker": "background/service_worker.js",
+      "type": "module"
+   },
+   "browser_specific_settings": {
+      "gecko": {
+         "id": "betterlyrics@boidu.dev",
+         "strict_min_version": "100.0"
+      }
+   },
+   "content_scripts": [ {
+      "css": [  ],
+      "js": [ "content_scripts/content-0.js" ],
+      "matches": [ "*://music.youtube.com/*" ],
+      "run_at": "document_start",
+      "world": "ISOLATED"
+   }, {
+      "css": [  ],
+      "js": [ "earlyInject.js" ],
+      "matches": [ "*://music.youtube.com/*" ],
+      "run_at": "document_start",
+      "world": "MAIN"
+   }, {
+      "css": [  ],
+      "js": [ "script.js" ],
+      "matches": [ "*://music.youtube.com/*" ],
+      "run_at": "document_end",
+      "world": "MAIN"
+   } ],
+   "content_security_policy": {
+      "extension_pages": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://api.fontshare.com https://fonts.googleapis.com; font-src 'self' data: https://cdn.fontshare.com https://fonts.gstatic.com; img-src 'self' data: https://blrcunison.vercel.app https://boidu.dev https://betterlyrics.org https://raw.githubusercontent.com https://placehold.co; connect-src https://unison.boidu.dev https://raw.githubusercontent.com https://api.github.com https://better-lyrics-themes-api.boidu.dev; frame-src https://better-lyrics-themes-api.boidu.dev;"
+   },
+   "default_locale": "en",
+   "description": "__MSG_extensionDescription__",
+   "externally_connectable": {
+      "matches": [ "https://unison.boidu.dev/*", "https://blrcunison.vercel.app/*" ]
+   },
+   "homepage_url": "https://betterlyrics.org",
+   "host_permissions": [ "*://music.youtube.com/*" ],
+   "icons": {
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png",
+      "512": "icons/icon-512.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4RTGjLjI1KqxGLgE7d3tD4O+mTA6pKDPZ29V4/uP9nBicHRst7R7n5wdFW1qvLiILyUqRm1fURMBeShb0mcPEMC6iW3cr4i8NG+52VxFcPIYbsegPHJsQFVWe6lgorVw20yn2mWshGKIppgN14FJCSFc7mS/CX4JL88E82AIaFJiVBgmpBu5RMcglUfSwMH5ePlRV68dOhMjX8bdoHH6FoAARh7igtyKBKEzA811PWRIBiKZBGAZc2ew6+5O2mERuFq0PRvfEcD4KsBRiWHltyUcYzVjIMF4soC8i6lNOJx8it0kAn5PN6G7TdiD3HbU5eLqk+iCr+cK/pS1ybiACQIDAQAB",
+   "manifest_version": 3,
+   "name": "Better Lyrics (Lyrics for Youtube Music)",
+   "optional_host_permissions": [  ],
+   "optional_permissions": [ "downloads" ],
+   "options_ui": {
+      "open_in_tab": false,
+      "page": "options_ui/page.html"
+   },
+   "permissions": [ "storage", "alarms" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "2.3.2",
+   "version_name": "2.3.2",
+   "web_accessible_resources": [ {
+      "matches": [ "*://music.youtube.com/*" ],
+      "resources": [ "*.js.map", "css/blyrics/*.css", "css/disablestylizedanimations.css", "css/themes/*.css", "css/themesong.css", "css/ytmusic/*.css", "images/icons/shaders.png", "pages/marketplace.html", "pages/standalone-editor.html", "pages/unison.html" ]
+   }, {
+      "matches": [ "https://blrcunison.vercel.app/*", "https://unison.boidu.dev/*" ],
+      "resources": [ "pages/auth.html" ]
+   } ]
+}
